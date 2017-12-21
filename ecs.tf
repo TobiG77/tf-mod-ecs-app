@@ -29,6 +29,10 @@ resource "aws_ecs_task_definition" "ecs_app" {
       {
         "name": "AWS_REGION",
         "value": "${var.region}"
+      },
+      {
+        "name": "ENVIRONMENT",
+        "value": "${var.environment}"
       }
     ],
    "logConfiguration": {
@@ -45,29 +49,6 @@ resource "aws_ecs_task_definition" "ecs_app" {
 ]
 CONTAINER_DEF
 }
-
-# # Simply specify the family to find the latest ACTIVE revision in that family.
-# data "aws_ecs_task_definition" "ecs_app" {
-#   task_definition = "${aws_ecs_task_definition.ecs_app.family}"
-# }
-
-# data "template_file" "ecs_task_definition_ecs_app" {
-#   template = "${file("./ecs_task_definition_ecs_app.json.tpl")}"
-
-#   vars {
-#     name          = "${var.application_name}"
-#     image         = "${aws_ecr_repository.ecs_app.repository_url}:latest"
-#     cpu           = "10"
-#     memory        = "2048"
-#     containerPort = "${var.application_port}"
-#     hostPort      = "${var.application_port}"
-#     protocol      = "tcp"
-#     region        = "${var.region}"
-#   }
-# }
-
-## this can mask json parse errors
-# comment out and rerun plan to identify those
 
 resource "aws_ecs_service" "ecs_app" {
   name            = "${var.application_name}"

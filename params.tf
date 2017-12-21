@@ -1,7 +1,7 @@
 # variable that are deliberately kept empty to force conscious context switches
 
-variable "stage" {
-  description = "The stack stage, i.e. [ dev, prod ]"
+variable "environment" {
+  description = "The stack environment, i.e. [ dev, prod ]"
 }
 
 variable "region" {}

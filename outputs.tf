@@ -10,6 +10,10 @@ output "instance_profile" {
   value = "${aws_iam_instance_profile.ecs-instance-ecs_app.name}"
 }
 
-output "task_definition" {
+output "task_definition_arn" {
   value = "${aws_ecs_task_definition.ecs_app.arn}"
+}
+
+output "task_definition_family" {
+  value = "${aws_ecs_task_definition.ecs_app.family}"
 }
