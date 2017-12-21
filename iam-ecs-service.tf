@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "ecs_permit_ssm_access" {
       "ssm:List*",
     ]
 
-    resources = ["arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/${var.application_name}-*"]
+    resources = ["arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/${var.environment}/${var.application_name}/*"]
 
     effect = "Allow"
   }
